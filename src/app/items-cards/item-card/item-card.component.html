@@ -1,0 +1,17 @@
+<div class="card" style="width: 18rem;" >
+   <img [src]="item.image_url" [ngClass]="getImagePosition()" alt="...">
+    <div class="card-body">
+    <h5 class="card-title">{{ item.name }}</h5>
+    <p class="card-text">{{item.tagline}}</p>
+    <div class="shift-item-wrapper">
+        <p class="card-text">{{calculateItemPrice() | currency:'USD'}}</p>
+        <ng-template [ngIf]="!cartRoute()" [ngIfElse]="inCart" >
+            <app-add-item-to-cart [item]="item"></app-add-item-to-cart>
+        </ng-template>
+        <ng-template #inCart>
+            <app-item-counter [item]="item"></app-item-counter>
+            <app-remove-item-from-cart [item]="item" ></app-remove-item-from-cart>
+        </ng-template>
+    </div>
+    <app-add-item-to-favourite [item]="item"></app-add-item-to-favourite>
+</div>

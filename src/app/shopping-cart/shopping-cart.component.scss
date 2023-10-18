@@ -1,0 +1,34 @@
+
+section{
+    width:100% !important;
+    max-height: 500px;
+    position: relative;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-items: center;
+    margin-bottom: 20px;
+    padding-top:30px;
+    align-self: center;
+}
+
+.card-container
+{
+    width: 100%;
+    margin-bottom: 30px
+}
+
+@media(min-width: 430px){
+    img{
+        padding-top: 1rem;
+    }
+}
+
+@media(min-width : 1000px){
+    main{
+        max-width: 1150px;
+    }
+}

@@ -1,0 +1,10 @@
+<main class="wrapper">
+  <section *ngFor="let item of items; let i = index">
+    <div class="card-container" *ngIf="i < 6">
+        <app-item-card [item]="item"></app-item-card>
+    </div>
+  </section>
+  <ng-template [ngIf]="showPagination">
+    <app-pagination [stock]="stock" (changePaginationEvent)="changePage()"></app-pagination>
+  </ng-template>
+</main>

@@ -1,0 +1,10 @@
+<main class="wrapper">
+  <ng-container *ngFor="let item of items; let i = index">
+    <ng-template  [ngIf]="i < 6">
+        <app-item-card class="card-container" id="app-item-{{item.id}}" *ngIf="i < 6" [item]="item"></app-item-card>
+    </ng-template>
+  </ng-container>
+  <section>
+    <span>Total price: {{calculateTotalPrice() | currency: 'USD'}}</span>
+  </section>
+</main>

@@ -1,0 +1,19 @@
+<section aria-label="Page navigation example">
+  <ul class="pagination">
+    <ng-template [ngIf]="this.currentPage !== 1">
+      <li (click)="changeToPreviousPage()" class="page-item"><a class="page-link" >Previous</a></li>
+    </ng-template>
+    <ng-template [ngIf]="changeFirstLi">
+      <li class="page-item"><a class="page-link" >{{currentPage}}</a></li>
+    </ng-template>
+    <ng-template [ngIf]="changeSecondLi">
+      <li (click)="secondLiClickHandler()" class="page-item"><a class="page-link" >{{currentPage + 1}}</a></li>
+    </ng-template>
+    <ng-template [ngIf]="changeThirdLi">
+      <li (click)="thirdLiClickHandler()" class="page-item"><a class="page-link" >{{currentPage + 2}}</a></li>
+    </ng-template>
+    <ng-template [ngIf]="this.currentPage !== this.numberOfPages">
+      <li (click)="changeToNextPage()"class="page-item"><a class="page-link">Next</a></li>
+    </ng-template>
+  </ul>
+</section>
