@@ -5,8 +5,18 @@
   a.title {
     color: white;
   }
+
 :host{
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.navbar-container-desktop{
+  display: flex;
+  width: 100%;
+}
+
+.navbar-container-desktop-right{
+  margin-left: auto;
 }

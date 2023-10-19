@@ -1,0 +1,27 @@
+.navbar-container-desktop{
+  display: flex;
+  width: 100%;
+}
+
+.navbar-container-desktop-right{
+  margin-left: auto;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+a.active{
+    color: rgb(200, 200, 200);
+}
+
+mat-sidenav{
+    a{
+        color: rgb(49, 49, 49); 
+    }
+
+    a.active{
+        color: purple;
+    }
+}

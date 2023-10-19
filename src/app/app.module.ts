@@ -30,6 +30,10 @@ import { AddItemToFavouriteComponent } from './items-cards/add-item-to-favourite
 import { PaginationComponent } from './items-cards/pagination/pagination.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatIconModule} from '@angular/material/icon';
+import { NavbarComponent } from './navbar/navbar.component';
+
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
 
@@ -91,7 +95,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     ItemCounterComponent,
     RemoveItemFromCartComponent,
     ShoppingCartComponent,
-    MainItemsLayoutComponent
+    MainItemsLayoutComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -104,7 +109,10 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     MatToolbarModule,
     MatListModule,
     HttpClientModule,
-    MsalModule
+    MsalModule,
+    FlexLayoutModule,
+    FormsModule,
+    MatIconModule   
   ],
   providers: [
     {
