@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IItemsStrategy } from './design-patterns/strategies/interfaces/IItemsStrategy';
 import { IBeer } from '../interfaces/IBeer';
 import { PaginationService } from '../services/pagination.service';
+import { IRemoveFavouriteItemStrategy } from './design-patterns/strategies/interfaces/IRemoveFavouriteItemStrategy';
 
 @Component({
   selector: 'app-items-cards',
@@ -12,6 +13,10 @@ export class ItemsCardsComponent implements OnInit {
 
   @Input()
   ItemsStrategy!: IItemsStrategy;
+
+  @Input()
+  favouriteItemRemovalStrategy!: IRemoveFavouriteItemStrategy; 
+
   showPagination!: boolean; 
   items: IBeer[] = [];
   stock!: number;
