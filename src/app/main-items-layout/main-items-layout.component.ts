@@ -3,9 +3,10 @@ import { MainItemsStrategy } from '../items-cards/design-patterns/strategies/mai
 import { IItemsStrategy } from '../items-cards/design-patterns/strategies/interfaces/IItemsStrategy';
 import { PaginationService } from '../services/pagination.service';
 import { BeerService } from '../services/beer.service';
-import { IRemoveFavouriteItemStrategy } from '../items-cards/design-patterns/strategies/interfaces/IRemoveFavouriteItemStrategy';
 import { RemoveFavouriteItemBaseStrategy } from '../items-cards/design-patterns/strategies/base/remove-favourite-items-base';
 import { FavouriteItemsService } from '../services/favourite-items.service';
+import { IFavoriteItemsEventStrategyService } from '../services/interfaces/IFavouriteItemsStrategyService';
+import { FavouriteItemsEventStrategyService } from '../services/favourite-items-strategy.service';
 
 @Component({
   selector: 'app-main-items-layout',
@@ -15,13 +16,17 @@ import { FavouriteItemsService } from '../services/favourite-items.service';
 export class MainItemsLayoutComponent {
 
   ItemsStrategy!: IItemsStrategy; 
-  favouriteItemRemovalStrategy!: IRemoveFavouriteItemStrategy;
+
   constructor(
         paginationService: PaginationService,
         bearService: BeerService,
-        favouriteItemsService: FavouriteItemsService 
-        ) {
-      this.ItemsStrategy = new MainItemsStrategy(bearService,paginationService);
-      this.favouriteItemRemovalStrategy = new RemoveFavouriteItemBaseStrategy(favouriteItemsService);
-   }
+        favouriteItemsService: FavouriteItemsService ,
+        favouriteItemsEventStrategyService: FavouriteItemsEventStrategyService
+        )
+      {
+          this.ItemsStrategy = new MainItemsStrategy(bearService,paginationService);
+
+          favouriteItemsEventStrategyService
+            .setFavouriteItemsEventStrategy(new RemoveFavouriteItemBaseStrategy(favouriteItemsService));
+      }
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../services/cart.service';
 import { IBeer } from '../interfaces/IBeer';
-import { IRemoveFavouriteItemStrategy } from '../items-cards/design-patterns/strategies/interfaces/IRemoveFavouriteItemStrategy';
 import { RemoveFavouriteItemBaseStrategy } from '../items-cards/design-patterns/strategies/base/remove-favourite-items-base';
 import { FavouriteItemsService } from '../services/favourite-items.service';
+import { FavouriteItemsEventStrategyService } from '../services/favourite-items-strategy.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -12,11 +12,13 @@ import { FavouriteItemsService } from '../services/favourite-items.service';
 })
 export class ShoppingCartComponent implements OnInit {
   public items: IBeer[] = [];
-  favouriteItemRemovalStrategy!: IRemoveFavouriteItemStrategy;
+
   constructor(private shoppingCartService: ShoppingCartService,
-              favouriteItemsService: FavouriteItemsService 
+              favouriteItemsService: FavouriteItemsService,
+              favouriteItemsEventStrategyService: FavouriteItemsEventStrategyService
     ) { 
-      this.favouriteItemRemovalStrategy = new RemoveFavouriteItemBaseStrategy(favouriteItemsService);
+          favouriteItemsEventStrategyService
+            .setFavouriteItemsEventStrategy(new RemoveFavouriteItemBaseStrategy(favouriteItemsService));
   }
 
   async ngOnInit(): Promise<void> {

@@ -1,8 +1,8 @@
-import { Component, Input, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
 import { IBeer } from 'src/app/interfaces/IBeer';
 import { FavouriteItemsService } from 'src/app/services/favourite-items.service';
 import { IRemoveFavouriteItemStrategy } from '../design-patterns/strategies/interfaces/IRemoveFavouriteItemStrategy';
+import { FavouriteItemsEventStrategyService } from 'src/app/services/favourite-items-strategy.service';
 
 @Component({
   selector: 'app-add-item-to-favourite',
@@ -14,13 +14,13 @@ export class AddItemToFavouriteComponent {
   @Input()
   item!: IBeer;
 
-  @Input()
   favouriteItemRemovalStrategy!: IRemoveFavouriteItemStrategy; 
 
-  constructor(private favouriteItemsService: FavouriteItemsService) {
+  constructor(private favouriteItemsService: FavouriteItemsService, favouriteItemsEventStrategyService: FavouriteItemsEventStrategyService) {
+    this.favouriteItemRemovalStrategy = favouriteItemsEventStrategyService.getFavouriteItemsEventStrategy();
   }
 
-  handleStarClick(){
+  handleStarClick(): void {
     this.item.favourite = !this.item.favourite;
 
     if(this.item.favourite)
@@ -31,4 +31,5 @@ export class AddItemToFavouriteComponent {
 
     this.favouriteItemRemovalStrategy.handleFavouriteItemRemoval(this.item.id);
   }
+  
 }

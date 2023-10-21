@@ -10,6 +10,7 @@ import { ShoppingCartService } from 'src/app/services/cart.service';
 export class RemoveItemFromCartComponent implements OnInit {
   @Input()
   item!: IBeer;
+
   constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
@@ -22,5 +23,4 @@ export class RemoveItemFromCartComponent implements OnInit {
     this.item.in_cart_amount = 0;
     document.getElementById(`app-item-${this.item.id}`)?.remove();
   }
-
 }

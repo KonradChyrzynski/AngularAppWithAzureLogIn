@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {  Router } from '@angular/router';
 import { IBeer } from 'src/app/interfaces/IBeer';
-import { IRemoveFavouriteItemStrategy } from '../design-patterns/strategies/interfaces/IRemoveFavouriteItemStrategy';
 
 @Component({
   selector: 'app-item-card',
@@ -12,9 +11,6 @@ export class ItemCardComponent {
 
   @Input()
   item!: IBeer;
-
-  @Input()
-  favouriteItemRemovalStrategy!: IRemoveFavouriteItemStrategy; 
 
   public state: boolean = true;
   public route: string = ''
@@ -57,4 +53,5 @@ export class ItemCardComponent {
 
     return this.item.price as number;
   }
+
 }

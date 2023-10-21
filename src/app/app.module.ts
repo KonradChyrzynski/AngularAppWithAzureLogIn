@@ -33,6 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FavouriteItemsEventStrategyService } from './services/favourite-items-strategy.service';
 
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
@@ -138,7 +139,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     BeerService,
     ShoppingCartService,
     PaginationService,
-    FavouriteItemsService
+    FavouriteItemsService,
+    FavouriteItemsEventStrategyService 
   ],
   bootstrap: [AppComponent, MsalRedirectComponent]
 })
