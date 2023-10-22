@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { MainItemsStrategy } from '../items-cards/design-patterns/strategies/main-items-strategy';
-import { IItemsStrategy } from '../items-cards/design-patterns/strategies/interfaces/IItemsStrategy';
+import { MainItemsStrategy } from '../items-cards/design-patterns/strategies/favourite-items/main-items-strategy';
+import { IItemsStrategy } from '../items-cards/design-patterns/strategies/favourite-items/interfaces/IItemsStrategy';
 import { PaginationService } from '../services/pagination.service';
 import { BeerService } from '../services/beer.service';
-import { RemoveFavouriteItemBaseStrategy } from '../items-cards/design-patterns/strategies/base/remove-favourite-items-base';
+import { RemoveFavouriteItemBaseStrategy } from '../items-cards/design-patterns/strategies/favourite-items/base/remove-favourite-items-base';
 import { FavouriteItemsService } from '../services/favourite-items.service';
 import { FavouriteItemsEventStrategyService } from '../services/favourite-items-strategy.service';
 

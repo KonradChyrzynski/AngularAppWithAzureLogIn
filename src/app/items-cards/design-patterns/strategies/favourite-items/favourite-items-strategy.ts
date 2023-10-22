@@ -36,11 +36,21 @@ export class FavouriteItemsStrategy  implements IItemsStrategy  {
          return this.items;
     }
 
+    async getTotalItems(): Promise<number>{
+        await this.favItemsService.getTotalItems().then((items: number) =>
+        {
+            this.totalItems = items;
+        })
+         .catch((error => {
+                    console.error(error);
+                    throw error;
+                }));;
+
+        return this.totalItems;
+    }
+
     showPagination(): boolean{
           return this.showPaginationFlag;
     }
 
-    getTotalItems(): number{
-        return this.totalItems;
-    }
 }

@@ -9,7 +9,7 @@ import { IPaginationStrategy } from '../design-patterns/strategies/pagination/in
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent implements OnInit {
-  
+
   @Input()
   stock!: number; 
 
@@ -29,8 +29,11 @@ export class PaginationComponent implements OnInit {
     this.paginationStrategies = Object.values(this.paginationWrapper).filter(value => value !== null);
   }
 
-  changePage(){
+  async changePage(){
+    this.paginationService.paginationChanged = false
     this.changePaginationEvent.emit()
+    const waitFor = (delay: number) => new Promise(resolve => setTimeout(resolve, delay));
+    await waitFor(0)
     this.paginationService.setPaginationWrapper()
     this.paginationWrapper = this.paginationService.getPaginationWrapper();
     this.paginationStrategies = Object.values(this.paginationWrapper).filter(value => value !== null);

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IItemsStrategy } from './design-patterns/strategies/interfaces/IItemsStrategy';
+import { IItemsStrategy } from './design-patterns/strategies/favourite-items/interfaces/IItemsStrategy';
 import { IBeer } from '../interfaces/IBeer';
 import { PaginationService } from '../services/pagination.service';
 
@@ -15,19 +15,22 @@ export class ItemsCardsComponent implements OnInit {
 
   showPagination!: boolean; 
   items: IBeer[] = [];
-  stock!: number;
-
+  stock: number = 0;
+  
   constructor(private paginationService: PaginationService) {
   }
 
   async ngOnInit() {
+      this.paginationService.setPaginationWrapper();
       this.paginationService.resetPagination()   
       this.items = await this.ItemsStrategy.getItems();
-      this.stock = this.ItemsStrategy.getTotalItems();
+      this.stock = await this.ItemsStrategy.getTotalItems();
       this.showPagination = this.ItemsStrategy.showPagination();
       }
   
   async changePage(){
     this.items = await this.ItemsStrategy.getItems();
+    this.stock = await this.ItemsStrategy.getTotalItems();
+    this.paginationService.calculateNumberOfPages(this.stock);
   }
 }

@@ -35,7 +35,16 @@ export class MainItemsStrategy  implements IItemsStrategy {
           return this.showPaginationFlag;
     }
 
-    getTotalItems():number{
-      return this.totalItems;
-    } 
+    async getTotalItems(): Promise<number>{
+        await this._beer.getTotalItems().then((items: number) =>
+        {
+            this.totalItems = items;
+        })
+         .catch((error => {
+                    console.error(error);
+                    throw error;
+                }));;
+
+        return this.totalItems;
+    }
 }

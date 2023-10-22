@@ -25,11 +25,16 @@ export class FavouriteItemsService
         }
     }
 
-    getFavouriteItems(): Promise<IBeer[]>
+    async getFavouriteItems(): Promise<IBeer[]>
     {
         return new Promise<IBeer[]>((resolve) => 
             resolve(Array.from(this.items))
         )
+    }
+
+    async getTotalItems(): Promise<number>{
+        return new Promise<number>((resolve) => 
+        resolve(this.items.size))
     }
 }
 

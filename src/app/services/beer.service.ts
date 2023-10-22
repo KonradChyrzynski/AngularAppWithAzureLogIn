@@ -10,7 +10,6 @@ import { IBeer } from '../interfaces/IBeer';
 export class BeerService {
     length: any;
     constructor(private http: HttpClient) { }
-
     public items: IBeer[] = []
     
     url = 'https://api.punkapi.com/v2/beers';
@@ -34,6 +33,12 @@ export class BeerService {
         }
 
         return this.items;
+    }
+
+    getTotalItems(): Promise<number> {
+        return new Promise<number>((resolve) => {
+            resolve(this.items.length);
+        })
     }
 
     async fulfillMissingFields(): Promise<void> {

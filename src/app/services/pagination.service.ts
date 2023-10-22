@@ -10,6 +10,7 @@ export class PaginationService {
     public beersIndexStart: number = 0;
     public beersIndexEnd: number = 6;
     public numbeOfItemsInPage: number = 6    
+    public paginationChanged: boolean = false;
 
     private paginationWrapper!: IPaginationWrapper
 
@@ -17,9 +18,6 @@ export class PaginationService {
 
     public numberOfPages!: number;
     public currentPage: number = 1;
-    public changeFirstLi: boolean = true;
-    public changeSecondLi: boolean = true;
-    public changeThirdLi: boolean = true;
 
     constructor() {
       this.paginationWrapperFactory = new PaginationWrapperFactory(this)
@@ -30,7 +28,6 @@ export class PaginationService {
     }
 
     setPaginationWrapper(){
-      debugger;
       const isLast: boolean = this.currentPage + 1 > this.numberOfPages;
       const isFirst: boolean = this.currentPage === 1;
       const hasOneMoreRightPage: boolean = this.currentPage + 1 <= this.numberOfPages;

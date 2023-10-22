@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IBeer } from 'src/app/interfaces/IBeer';
 import { FavouriteItemsService } from 'src/app/services/favourite-items.service';
-import { IRemoveFavouriteItemStrategy } from '../design-patterns/strategies/interfaces/IRemoveFavouriteItemStrategy';
+import { IRemoveFavouriteItemStrategy } from '../design-patterns/strategies/favourite-items/interfaces/IRemoveFavouriteItemStrategy';
 import { FavouriteItemsEventStrategyService } from 'src/app/services/favourite-items-strategy.service';
 
 @Component({

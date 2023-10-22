@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../services/cart.service';
 import { IBeer } from '../interfaces/IBeer';
-import { RemoveFavouriteItemBaseStrategy } from '../items-cards/design-patterns/strategies/base/remove-favourite-items-base';
+import { RemoveFavouriteItemBaseStrategy } from '../items-cards/design-patterns/strategies/favourite-items/base/remove-favourite-items-base';
 import { FavouriteItemsService } from '../services/favourite-items.service';
 import { FavouriteItemsEventStrategyService } from '../services/favourite-items-strategy.service';
 

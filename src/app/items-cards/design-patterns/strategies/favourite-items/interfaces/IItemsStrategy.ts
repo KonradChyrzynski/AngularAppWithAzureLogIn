@@ -4,5 +4,5 @@ export interface IItemsStrategy
 {
     getItems(): Promise<IBeer[]> 
     showPagination(): boolean;
-    getTotalItems(): number;
+    getTotalItems(): Promise<number>;
 }
