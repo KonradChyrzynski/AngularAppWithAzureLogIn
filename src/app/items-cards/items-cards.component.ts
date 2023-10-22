@@ -21,7 +21,7 @@ export class ItemsCardsComponent implements OnInit {
   }
 
   async ngOnInit() {
-      this.resetPaginations()   
+      this.paginationService.resetPagination()   
       this.items = await this.ItemsStrategy.getItems();
       this.stock = this.ItemsStrategy.getTotalItems();
       this.showPagination = this.ItemsStrategy.showPagination();
@@ -29,10 +29,5 @@ export class ItemsCardsComponent implements OnInit {
   
   async changePage(){
     this.items = await this.ItemsStrategy.getItems();
-  }
-
-  resetPaginations(){
-    this.paginationService.beersIndexStart = 0;
-    this.paginationService.beersIndexEnd = 6;
   }
 }

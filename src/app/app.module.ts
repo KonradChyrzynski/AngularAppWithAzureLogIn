@@ -34,6 +34,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FavouriteItemsEventStrategyService } from './services/favourite-items-strategy.service';
+import { PaginationButtonComponent } from './items-cards/pagination/pagination-button/pagination-button.component';
+
 
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
@@ -45,7 +47,7 @@ export function loggerCallback(logLevel: LogLevel, message: string) {
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
     auth: {
-      clientId: '',
+      clientId: 'fe3a646e-7c0f-471c-8607-544863b54d37',
       authority: 'https://login.microsoftonline.com/common',
       redirectUri: 'http://localhost:4200/'
     },
@@ -97,7 +99,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     RemoveItemFromCartComponent,
     ShoppingCartComponent,
     MainItemsLayoutComponent,
-    NavbarComponent
+    NavbarComponent,
+    PaginationButtonComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, Pipe, PipeTransform } from '@angular/core';
+import { IPaginationWrapper } from 'src/app/interfaces/IPaginationWrapper';
 import { PaginationService } from 'src/app/services/pagination.service';
+import { IPaginationStrategy } from '../design-patterns/strategies/pagination/interfaces/IPaginationStrategy';
 
 @Component({
   selector: 'app-pagination',
@@ -7,73 +9,30 @@ import { PaginationService } from 'src/app/services/pagination.service';
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent implements OnInit {
-  @Output() changePaginationEvent = new EventEmitter();
+  
   @Input()
   stock!: number; 
 
-  public currentPage: number = 1;
+  @Output() changePaginationEvent = new EventEmitter();
 
-  public numberOfPages!: number;
-  public changeFirstLi: boolean = true;
-  public changeSecondLi: boolean = true;
-  public changeThirdLi: boolean = true;
+  public paginationWrapper!: IPaginationWrapper
+  public paginationStrategies!: IPaginationStrategy[]
 
-  constructor(private paginationService: PaginationService) {
+  constructor(private paginationService: PaginationService){
 
   }
 
   ngOnInit(): void {
-    this.numberOfPages = this.calculateNumberOfPages();
-    this.checkLiDisplay();
+    this.paginationService.calculateNumberOfPages(this.stock);
+    this.paginationService.setPaginationWrapper()
+    this.paginationWrapper = this.paginationService.getPaginationWrapper();
+    this.paginationStrategies = Object.values(this.paginationWrapper).filter(value => value !== null);
   }
 
-  calculateNumberOfPages(): number{
-    return Math.ceil(this.stock / 6);
-  }
-
-  changeToNextPage(): void {
-    this.changePagination(6,6, 1);
+  changePage(){
     this.changePaginationEvent.emit()
+    this.paginationService.setPaginationWrapper()
+    this.paginationWrapper = this.paginationService.getPaginationWrapper();
+    this.paginationStrategies = Object.values(this.paginationWrapper).filter(value => value !== null);
   }
-
-  changeToPreviousPage(){
-    this.changePagination(-6,-6, -1);
-    this.changePaginationEvent.emit()
-  }
-
-  firstLiClickHandler(): void {
-    this.changePaginationEvent.emit()
-  }
-
-  secondLiClickHandler(): void {
-    this.changePagination(6,6, 1);
-    this.changePaginationEvent.emit()
-  }
-
-  thirdLiClickHandler(): void {
-    this.changePagination(2*6,2*6, 2);
-    this.changePaginationEvent.emit()
-  }
-
-  changePagination(startIndex: number, endIndex: number, currentPage: number){
-    this.paginationService.beersIndexStart += startIndex;
-    this.paginationService.beersIndexEnd += endIndex;
-    console.log(this.paginationService.beersIndexEnd);
-    this.currentPage += currentPage;
-    this.checkLiDisplay()
-  }
-
-  checkLiDisplay(){
-    if(this.currentPage + 2 > this.numberOfPages || this.currentPage + 1 > this.numberOfPages){
-      this.changeThirdLi = false;
-    }else{
-      this.changeThirdLi = true;
-    }
-    if(this.currentPage + 1 > this.numberOfPages){
-      this.changeSecondLi = false;
-    }else{
-      this.changeSecondLi = true
-    }
-  } 
-
 }

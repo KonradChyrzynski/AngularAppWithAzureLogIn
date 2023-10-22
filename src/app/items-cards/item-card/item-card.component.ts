@@ -44,7 +44,6 @@ export class ItemCardComponent {
   }
 
   calculateItemPrice(): number {
-
     if(this.item.in_cart_amount !== 0 && this.cartRoute())
     {
       const ammount = this.item.in_cart_amount as number;
@@ -53,5 +52,4 @@ export class ItemCardComponent {
 
     return this.item.price as number;
   }
-
 }

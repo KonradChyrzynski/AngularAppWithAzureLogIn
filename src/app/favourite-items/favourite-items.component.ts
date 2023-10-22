@@ -23,8 +23,6 @@ export class FavouriteItemsComponent  {
     favouriteItemsEventStrategyService: FavouriteItemsEventStrategyService
     ) {
     this.ItemsStrategy = new FavouriteItemsStrategy(favouriteItemsService, paginationService);
-
-          favouriteItemsEventStrategyService
-            .setFavouriteItemsEventStrategy(new RemoveFavouriteItemComponentStrategy(favouriteItemsService));
+    favouriteItemsEventStrategyService.setFavouriteItemsEventStrategy(new RemoveFavouriteItemComponentStrategy(favouriteItemsService));
   }
 }

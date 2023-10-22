@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
         filter((msg: EventMessage) => msg.eventType === EventType.LOGIN_SUCCESS),
       )
       .subscribe((result: EventMessage) => {
-        console.log(result);
         const payload = result.payload as AuthenticationResult;
         this.authService.instance.setActiveAccount(payload.account);
       });
@@ -30,5 +29,4 @@ export class HomeComponent implements OnInit {
   setLoginDisplay() {
     this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
   }
-
 }
