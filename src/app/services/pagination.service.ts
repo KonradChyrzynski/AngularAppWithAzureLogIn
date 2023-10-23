@@ -87,4 +87,25 @@ export class PaginationService {
       this.beersIndexEnd = this.numbeOfItemsInPage;
       this.currentPage = 1
     }
+
+    //Add dynamic loading based on route
+
+    // goto(page: number){
+    //   const abs = Math.abs(page - this.currentPage);
+    //   //page is 4 current page is 2 
+
+    //   if(page > this.currentPage){
+    //     this.beersIndexStart = abs * this.numbeOfItemsInPage;
+    //     this.beersIndexEnd = this.beersIndexStart + this.numbeOfItemsInPage;
+    //     this.currentPage = page;
+    //     return;
+    //   }
+
+    //   this.beersIndexStart = this.beersIndexStart - (abs * this.numbeOfItemsInPage);
+    //   this.beersIndexEnd = this.beersIndexStart + this.numbeOfItemsInPage;
+    //   this.currentPage = page;
+    //   //page is 2 current page is 2
+    //   return
+    // }
+
 }

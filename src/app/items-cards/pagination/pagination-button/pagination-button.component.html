@@ -1,1 +1,1 @@
-<li (click)="handleClick()"class="page-item"><a class="page-link">{{paginationText}}</a></li>
+<li (click)="handleClick()"class="page-item" [ngClass]="isCurrentPage ? 'active': ''"><a class="page-link">{{paginationText}}</a></li>

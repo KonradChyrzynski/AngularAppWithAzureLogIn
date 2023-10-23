@@ -4,5 +4,7 @@ export interface IPaginationStrategy
 {
     handleClick(): void   
     setPaginationText(paginationEnum: PaginationTextEnum): void
+    setAsCurrentPage(): void
+    getCurrentPageFlag(): boolean
     getPaginationText(): string 
 }

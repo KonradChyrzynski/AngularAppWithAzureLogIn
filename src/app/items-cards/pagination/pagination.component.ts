@@ -30,10 +30,9 @@ export class PaginationComponent implements OnInit {
   }
 
   async changePage(){
-    this.paginationService.paginationChanged = false
     this.changePaginationEvent.emit()
     const waitFor = (delay: number) => new Promise(resolve => setTimeout(resolve, delay));
-    await waitFor(0)
+    await waitFor(5)
     this.paginationService.setPaginationWrapper()
     this.paginationWrapper = this.paginationService.getPaginationWrapper();
     this.paginationStrategies = Object.values(this.paginationWrapper).filter(value => value !== null);

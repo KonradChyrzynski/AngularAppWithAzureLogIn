@@ -1,4 +1,3 @@
-
 import { PaginationService } from "src/app/services/pagination.service";
 import { PaginationBaseStrategy } from "./base/pagination-base-strategy";
 import { IPaginationStrategy } from "./interfaces/IPaginationStrategy";

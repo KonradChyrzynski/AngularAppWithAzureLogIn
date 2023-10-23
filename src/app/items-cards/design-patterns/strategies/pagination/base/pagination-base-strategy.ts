@@ -8,6 +8,8 @@ export abstract class PaginationBaseStrategy {
     public numberOfPages!: number;
     public numbeOfItemsInPage: number = 0   
     private paginationComponentText : string = "";
+    private currentPage: boolean = false;
+
     constructor(private paginationService: PaginationService) {
       this.numbeOfItemsInPage = paginationService.numbeOfItemsInPage
     }
@@ -48,6 +50,14 @@ export abstract class PaginationBaseStrategy {
           this.paginationComponentText = String(this.paginationService.currentPage)
             break;
       }
+    }
+
+    public setAsCurrentPage() {
+      this.currentPage = true;
+    }
+
+    public getCurrentPageFlag() {
+      return this.currentPage;
     }
 
     getPaginationText(): string{

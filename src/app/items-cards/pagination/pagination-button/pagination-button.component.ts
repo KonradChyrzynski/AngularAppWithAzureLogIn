@@ -8,19 +8,20 @@ import { IPaginationStrategy } from '../../design-patterns/strategies/pagination
 })
 export class PaginationButtonComponent implements OnInit {
 
-
   @Output() changePaginationEvent = new EventEmitter();
   
   @Input()
   paginationStrategy!: IPaginationStrategy | null;
 
   public paginationText!: string;
+  public isCurrentPage!: boolean
 
   constructor() {
    }
 
   ngOnInit(): void {
     this.paginationText = this.paginationStrategy!.getPaginationText()
+    this.isCurrentPage = this.paginationStrategy!.getCurrentPageFlag();
   }
 
   handleClick(){

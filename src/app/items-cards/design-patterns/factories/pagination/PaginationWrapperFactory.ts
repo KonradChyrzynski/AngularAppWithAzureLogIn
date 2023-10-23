@@ -21,6 +21,7 @@ export class PaginationWrapperFactory implements IPaginationWrapperFactory {
             NextButtonStrategy: null
         }
         paginationWrapper.PreviousButtonStrategy!.setPaginationText(PaginationTextEnum.PreviousButton)
+        paginationWrapper.SecondButtonStrategy!.setAsCurrentPage();
         return paginationWrapper;
     }
 
@@ -34,6 +35,7 @@ export class PaginationWrapperFactory implements IPaginationWrapperFactory {
         }
 
         paginationWrapper.PreviousButtonStrategy!.setPaginationText(PaginationTextEnum.PreviousButton)
+        paginationWrapper.ThirdButtonStrategy!.setAsCurrentPage();
 
         return paginationWrapper 
     }
@@ -48,6 +50,7 @@ export class PaginationWrapperFactory implements IPaginationWrapperFactory {
         }
 
         paginationWrapper.NextButtonStrategy!.setPaginationText(PaginationTextEnum.NextButton)
+        paginationWrapper.FirstButtonStrategy!.setAsCurrentPage();
 
         return paginationWrapper
     }
@@ -60,7 +63,9 @@ export class PaginationWrapperFactory implements IPaginationWrapperFactory {
             ThirdButtonStrategy: new PaginationDualRightStrategy(this.paginationService),
             NextButtonStrategy: new PaginationRightStrategy(this.paginationService)
         }
+
         paginationWrapper.NextButtonStrategy!.setPaginationText(PaginationTextEnum.NextButton)
+        paginationWrapper.FirstButtonStrategy!.setAsCurrentPage();
 
         return paginationWrapper
     }
@@ -76,17 +81,22 @@ export class PaginationWrapperFactory implements IPaginationWrapperFactory {
 
         paginationWrapper.PreviousButtonStrategy!.setPaginationText(PaginationTextEnum.PreviousButton)
         paginationWrapper.NextButtonStrategy!.setPaginationText(PaginationTextEnum.NextButton)
+        paginationWrapper.SecondButtonStrategy!.setAsCurrentPage();
 
         return paginationWrapper
     }
 
     createSinglePagePaginationWrapper(): IPaginationWrapper {
-        return {
+        const paginationWrapper = {
             PreviousButtonStrategy: null,
             FirstButtonStrategy: new PaginationPassiveStrategy(this.paginationService), 
             SecondButtonStrategy: null,
             ThirdButtonStrategy: null,
             NextButtonStrategy: null,
         }
+
+        paginationWrapper.FirstButtonStrategy!.setAsCurrentPage();
+
+        return paginationWrapper 
     }
 }
