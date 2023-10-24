@@ -1,3 +1,5 @@
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
+
 ### Configure the application
 - Open `./src/app/app.modules.ts` in an editor.
 - Replace client id with the Application (client) ID from the portal registration, or use the currently configured lab registration. 
