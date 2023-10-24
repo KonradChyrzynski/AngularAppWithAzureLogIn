@@ -6,12 +6,12 @@ import { PaginationTextEnum } from "../enums/pagination-text-enum";
 export abstract class PaginationBaseStrategy {
 
     public numberOfPages!: number;
-    public numbeOfItemsInPage: number = 0   
+    public numberOfItemsInPage: number = 0   
     private paginationComponentText : string = "";
     private currentPage: boolean = false;
 
     constructor(private paginationService: PaginationService) {
-      this.numbeOfItemsInPage = paginationService.numbeOfItemsInPage
+      this.numberOfItemsInPage = paginationService.numberOfItemsInPage
     }
 
     @Output() changePaginationEvent = new EventEmitter();

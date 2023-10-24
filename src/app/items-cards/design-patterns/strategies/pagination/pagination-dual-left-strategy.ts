@@ -11,7 +11,7 @@ export class PaginationDualLeftStrategy extends PaginationBaseStrategy implement
     }
     
     handleClick(): void {
-        super.changePagination(2 * (-this.numbeOfItemsInPage),2 * (-this.numbeOfItemsInPage), -2);
+        super.changePagination(2 * (-this.numberOfItemsInPage),2 * (-this.numberOfItemsInPage), -2);
         super.emmitChangePaginationEvent();
     }
 }

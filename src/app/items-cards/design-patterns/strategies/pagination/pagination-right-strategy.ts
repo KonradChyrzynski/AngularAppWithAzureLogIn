@@ -1,4 +1,3 @@
-
 import { PaginationService } from "src/app/services/pagination.service";
 import { PaginationBaseStrategy } from "./base/pagination-base-strategy";
 import { IPaginationStrategy } from "./interfaces/IPaginationStrategy";
@@ -12,7 +11,7 @@ export class PaginationRightStrategy extends PaginationBaseStrategy implements I
     }
 
     handleClick(): void {
-        super.changePagination( this.numbeOfItemsInPage, this.numbeOfItemsInPage, 1);
+        super.changePagination( this.numberOfItemsInPage, this.numberOfItemsInPage, 1);
         super.emmitChangePaginationEvent();
     }
 }
