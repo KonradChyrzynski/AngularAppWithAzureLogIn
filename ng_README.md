@@ -1,14 +1,3 @@
-# Angular 11 MSAL Angular 2.x Sample
-
-This developer sample is used to demonstrate how to use MSAL-Angular v2.
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
-
-## How to run the sample
-
-### Pre-requisites
-- Ensure [all pre-requisites](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/msal-angular-v2/lib/msal-angular/README.md) have been completed to run msal-angular.
-
 ### Configure the application
 - Open `./src/app/app.modules.ts` in an editor.
 - Replace client id with the Application (client) ID from the portal registration, or use the currently configured lab registration. 
