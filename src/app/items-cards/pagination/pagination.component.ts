@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, Pipe, PipeTransform } f
 import { IPaginationWrapper } from 'src/app/interfaces/IPaginationWrapper';
 import { PaginationService } from 'src/app/services/pagination.service';
 import { IPaginationStrategy } from '../design-patterns/strategies/pagination/interfaces/IPaginationStrategy';
+import { PaginationFactoryService } from 'src/app/services/pagination.factory.service';
 
 @Component({
   selector: 'app-pagination',
@@ -18,14 +19,14 @@ export class PaginationComponent implements OnInit {
   public paginationWrapper!: IPaginationWrapper
   public paginationStrategies!: IPaginationStrategy[]
 
-  constructor(private paginationService: PaginationService){
+  constructor(private paginationService: PaginationService, private paginationFactoryService: PaginationFactoryService){
 
   }
 
   ngOnInit(): void {
     this.paginationService.calculateNumberOfPages(this.stock);
-    this.paginationService.setPaginationWrapper()
-    this.paginationWrapper = this.paginationService.getPaginationWrapper();
+    this.paginationFactoryService.setPaginationWrapper()
+    this.paginationWrapper = this.paginationFactoryService.getPaginationWrapper();
     this.paginationStrategies = Object.values(this.paginationWrapper).filter(value => value !== null);
   }
 
@@ -33,8 +34,8 @@ export class PaginationComponent implements OnInit {
     this.changePaginationEvent.emit()
     const waitFor = (delay: number) => new Promise(resolve => setTimeout(resolve, delay));
     await waitFor(5)
-    this.paginationService.setPaginationWrapper()
-    this.paginationWrapper = this.paginationService.getPaginationWrapper();
+    this.paginationFactoryService.setPaginationWrapper()
+    this.paginationWrapper = this.paginationFactoryService.getPaginationWrapper();
     this.paginationStrategies = Object.values(this.paginationWrapper).filter(value => value !== null);
   }
 }

@@ -13,7 +13,7 @@ export class PaginationDualRightStrategy extends PaginationBaseStrategy implemen
     }
 
     handleClick(): void {
-        super.changePagination(2 * (this.numbeOfItemsInPage),2 * (this.numbeOfItemsInPage), 2);
+        super.changePagination(2 * (this.numberOfItemsInPage),2 * (this.numberOfItemsInPage), 2);
         super.emmitChangePaginationEvent();
     }
 }

@@ -11,7 +11,7 @@ export class PaginationLeftStrategy extends PaginationBaseStrategy implements IP
     }
 
     handleClick(): void {
-        super.changePagination((-this.numbeOfItemsInPage), (-this.numbeOfItemsInPage), -1);
+        super.changePagination((-this.numberOfItemsInPage), (-this.numberOfItemsInPage), -1);
         super.emmitChangePaginationEvent();
     }
 }
