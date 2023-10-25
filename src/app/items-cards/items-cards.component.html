@@ -4,7 +4,7 @@
         <app-item-card id="app-item-{{item.id}}" [item]="item"></app-item-card>
     </div>
   </section>
-  <ng-template [ngIf]="showPagination">
+  <ng-template [ngIf]="showPagination$ | async">
     <app-pagination [stock]="stock" (changePaginationEvent)="changePage()"></app-pagination>
   </ng-template>
 </main>

@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { IBeer } from "../interfaces/IBeer";
+import { BehaviorSubject, Subject } from "rxjs";
+import { PaginationService } from "./pagination.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,11 @@ export class FavouriteItemsService
     items: Set<IBeer> = new Set(
     );
 
-    constructor(){}
+    private showPaginationSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+    constructor(private paginationService: PaginationService){
+        
+    }
 
     addToFavourite(item: IBeer): void
     {
@@ -23,10 +29,20 @@ export class FavouriteItemsService
                 break;
             }
         }
+
+        if(this.items.size === 0){
+            this.showPaginationSubject.next(false); 
+        }
+        else{
+            this.showPaginationSubject.next(true); 
+        }
     }
 
     async getFavouriteItems(): Promise<IBeer[]>
     {
+        if(this.items.size > 6){
+            this.showPaginationSubject.next(true);
+        }
         return new Promise<IBeer[]>((resolve) => 
             resolve(Array.from(this.items))
         )
@@ -35,6 +51,14 @@ export class FavouriteItemsService
     async getTotalItems(): Promise<number>{
         return new Promise<number>((resolve) => 
         resolve(this.items.size))
+    }
+
+    showPaginationFlag(): Subject<boolean> {
+        return this.showPaginationSubject;
+    }
+
+    changePaginationFlag(flag: boolean): void  {
+        this.showPaginationSubject.next(flag);
     }
 }
 

@@ -2,6 +2,7 @@ import { BeerService } from "src/app/services/beer.service";
 import { IItemsStrategy } from "./interfaces/IItemsStrategy";
 import { IBeer } from "src/app/interfaces/IBeer";
 import { PaginationService } from "src/app/services/pagination.service";
+import { Observable } from "rxjs";
 
 export class MainItemsStrategy  implements IItemsStrategy { 
 
@@ -10,6 +11,10 @@ export class MainItemsStrategy  implements IItemsStrategy {
     private totalItems: number = 0;
     constructor(private _beer: BeerService, private paginationService: PaginationService ){
     }
+
+  showPagination(): boolean {
+    throw new Error("Method not implemented.");
+  }
 
     async getItems(): Promise<IBeer[]> {
       
@@ -31,8 +36,10 @@ export class MainItemsStrategy  implements IItemsStrategy {
         return this.items;
       }
 
-    showPagination(): boolean{
-          return this.showPaginationFlag;
+    showPaginationObservable(): Observable<boolean>{
+        return new Observable<boolean>((observer) => {
+            observer.next(this.showPaginationFlag)
+        })
     }
 
     async getTotalItems(): Promise<number>{

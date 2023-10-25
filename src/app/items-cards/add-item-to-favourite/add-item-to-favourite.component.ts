@@ -31,5 +31,4 @@ export class AddItemToFavouriteComponent {
 
     this.favouriteItemRemovalStrategy.handleFavouriteItemRemoval(this.item.id);
   }
-  
 }
