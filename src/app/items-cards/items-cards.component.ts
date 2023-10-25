@@ -3,6 +3,7 @@ import { IItemsStrategy } from './design-patterns/strategies/favourite-items/int
 import { IBeer } from '../interfaces/IBeer';
 import { PaginationFactoryService } from '../services/pagination.factory.service';
 import { PaginationService } from '../services/pagination.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-items-cards',
@@ -14,7 +15,8 @@ export class ItemsCardsComponent implements OnInit {
   @Input()
   ItemsStrategy!: IItemsStrategy;
 
-  showPagination!: boolean; 
+  showPagination$!: Observable<boolean>; 
+  showPagination!: boolean;
   items: IBeer[] = [];
   stock: number = 0;
   
@@ -24,8 +26,8 @@ export class ItemsCardsComponent implements OnInit {
   async ngOnInit() {
       this.paginationService.resetPagination()   
       this.items = await this.ItemsStrategy.getItems();
+      this.showPagination$ = this.ItemsStrategy.showPaginationObservable();
       this.stock = await this.ItemsStrategy.getTotalItems();
-      this.showPagination = this.ItemsStrategy.showPagination();
       }
   
   async changePage(){

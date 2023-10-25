@@ -1,14 +1,15 @@
+
 import { IBeer } from "src/app/interfaces/IBeer";
 import { IItemsStrategy } from "./interfaces/IItemsStrategy";
 import { FavouriteItemsService } from "src/app/services/favourite-items.service";
 import { PaginationService } from "src/app/services/pagination.service";
+import { Subject } from "rxjs";
 
 export class FavouriteItemsStrategy  implements IItemsStrategy  {
 
     private items!: IBeer[];  
     private showPaginationFlag: boolean = false;
     private totalItems: number = 0;
-
     constructor(private favItemsService: FavouriteItemsService ,
         private paginationService: PaginationService) {
     }
@@ -45,6 +46,7 @@ export class FavouriteItemsStrategy  implements IItemsStrategy  {
                     console.error(error);
                     throw error;
                 }));;
+        
 
         return this.totalItems;
     }
@@ -53,4 +55,7 @@ export class FavouriteItemsStrategy  implements IItemsStrategy  {
           return this.showPaginationFlag;
     }
 
+    showPaginationObservable(): Subject<boolean>{
+        return this.favItemsService.showPaginationFlag();
+    }
 }
