@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IBeer } from '../interfaces/IBeer';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable(
     {
@@ -11,6 +12,7 @@ export class BeerService {
     length: any;
     constructor(private http: HttpClient) { }
     public items: IBeer[] = []
+    public items$: BehaviorSubject<IBeer[]> = new BehaviorSubject<IBeer[]>(Array.from(this.items))
     
     url = 'https://api.punkapi.com/v2/beers';
 

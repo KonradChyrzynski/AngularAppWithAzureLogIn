@@ -5,7 +5,7 @@ import { IRemoveFavouriteItemStrategy } from "../interfaces/IRemoveFavouriteItem
 export class RemoveFavouriteItemBaseStrategy implements IRemoveFavouriteItemStrategy
 {
 
-    constructor(private favouriteItemsService: FavouriteItemsService ) {
+    constructor(protected favouriteItemsService: FavouriteItemsService ) {
 
     }
 

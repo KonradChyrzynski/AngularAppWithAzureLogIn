@@ -3,7 +3,7 @@ import { IBeer } from "src/app/interfaces/IBeer";
 import { IItemsStrategy } from "./interfaces/IItemsStrategy";
 import { FavouriteItemsService } from "src/app/services/favourite-items.service";
 import { PaginationService } from "src/app/services/pagination.service";
-import { Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
 
 export class FavouriteItemsStrategy  implements IItemsStrategy  {
 
@@ -12,6 +12,10 @@ export class FavouriteItemsStrategy  implements IItemsStrategy  {
     private totalItems: number = 0;
     constructor(private favItemsService: FavouriteItemsService ,
         private paginationService: PaginationService) {
+    }
+
+    getItems$(): Observable<IBeer[]>{
+        return this.favItemsService.items$
     }
 
     async getItems(): Promise<IBeer[]>
@@ -33,7 +37,7 @@ export class FavouriteItemsStrategy  implements IItemsStrategy  {
                     console.error(error);
                     throw error;
                 }));;
-
+         this.favItemsService.items$.next(Array.from(this.items))
          return this.items;
     }
 

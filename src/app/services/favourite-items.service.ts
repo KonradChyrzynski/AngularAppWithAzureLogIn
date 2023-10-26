@@ -1,19 +1,19 @@
 import { Injectable } from "@angular/core";
 import { IBeer } from "../interfaces/IBeer";
 import { BehaviorSubject, Subject } from "rxjs";
-import { PaginationService } from "./pagination.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavouriteItemsService 
 {
-    items: Set<IBeer> = new Set(
+    public items: Set<IBeer> = new Set(
     );
 
     private showPaginationSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    public items$: BehaviorSubject<IBeer[]> = new BehaviorSubject<IBeer[]>(Array.from(this.items))
 
-    constructor(private paginationService: PaginationService){
+    constructor(){
         
     }
 
@@ -26,6 +26,7 @@ export class FavouriteItemsService
         for(let item of this.items){
             if(item.id === id){
                 this.items.delete(item);
+                this.items$.next(Array.from(this.items))
                 break;
             }
         }

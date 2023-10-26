@@ -6,6 +6,7 @@ import { FavouriteItemsService } from '../services/favourite-items.service';
 import { IBeer } from '../interfaces/IBeer';
 import { RemoveFavouriteItemComponentStrategy  } from '../items-cards/design-patterns/strategies/favourite-items/remove-favourite-items-route-strategy';
 import { FavouriteItemsEventStrategyService } from '../services/favourite-items-strategy.service';
+import { PaginationFactoryService } from '../services/pagination.factory.service';
 
 @Component({
   selector: 'favourite-items',
@@ -20,9 +21,10 @@ export class FavouriteItemsComponent  {
   constructor(
     favouriteItemsService: FavouriteItemsService, 
     paginationService: PaginationService,
-    favouriteItemsEventStrategyService: FavouriteItemsEventStrategyService
+    paginationWrapperFactoryService: PaginationFactoryService,
+    favouriteItemsEventStrategyService: FavouriteItemsEventStrategyService,
     ) {
     this.ItemsStrategy = new FavouriteItemsStrategy(favouriteItemsService, paginationService);
-    favouriteItemsEventStrategyService.setFavouriteItemsEventStrategy(new RemoveFavouriteItemComponentStrategy(favouriteItemsService));
+    favouriteItemsEventStrategyService.setFavouriteItemsEventStrategy(new RemoveFavouriteItemComponentStrategy(favouriteItemsService, paginationService, paginationWrapperFactoryService));
   }
 }

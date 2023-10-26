@@ -10,11 +10,16 @@ export class MainItemsStrategy  implements IItemsStrategy {
     private showPaginationFlag: boolean = false;
     private totalItems: number = 0;
     constructor(private _beer: BeerService, private paginationService: PaginationService ){
+
     }
 
-  showPagination(): boolean {
-    throw new Error("Method not implemented.");
-  }
+    showPagination(): boolean {
+      throw new Error("Method not implemented.");
+    }
+
+    getItems$(): Observable<IBeer[]>{
+      return this._beer.items$;
+    }
 
     async getItems(): Promise<IBeer[]> {
       
@@ -33,6 +38,8 @@ export class MainItemsStrategy  implements IItemsStrategy {
             throw error;
           });
       
+        this._beer.items$.next(Array.from(this.items))
+
         return this.items;
       }
 
