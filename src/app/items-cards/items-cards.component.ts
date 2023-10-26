@@ -3,8 +3,7 @@ import { IItemsStrategy } from './design-patterns/strategies/favourite-items/int
 import { IBeer } from '../interfaces/IBeer';
 import { PaginationFactoryService } from '../services/pagination.factory.service';
 import { PaginationService } from '../services/pagination.service';
-import { Observable, Subscription } from 'rxjs';
-import { take, takeWhile } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-items-cards',

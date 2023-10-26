@@ -12,7 +12,13 @@ export class RemoveFavouriteItemComponentStrategy extends RemoveFavouriteItemBas
     }
 
     handleFavouriteItemRemoval(itemId: number): void{
+        if(this.favouriteItemsService.items.size % this.paginationService.numberOfItemsInPage === 1){
+            this.paginationService.changePagination(-this.paginationService.numberOfItemsInPage, -this.paginationService.numberOfItemsInPage, - 1)
+        }
+
         super.handleFavouriteItemRemoval(itemId);
+
+
         this.paginationService.calculateNumberOfPages(this.favouriteItemsService.items.size)
         this.paginationWrapperFactory.setPaginationWrapper()
         document.getElementById(`app-item-${itemId}`)?.remove();

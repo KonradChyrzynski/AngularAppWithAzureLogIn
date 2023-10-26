@@ -38,6 +38,9 @@ export class FavouriteItemsStrategy  implements IItemsStrategy  {
                     throw error;
                 }));;
          this.favItemsService.items$.next(Array.from(this.items))
+         debugger;
+         if(this.paginationService.currentPage !== 1){
+         }
          return this.items;
     }
 
