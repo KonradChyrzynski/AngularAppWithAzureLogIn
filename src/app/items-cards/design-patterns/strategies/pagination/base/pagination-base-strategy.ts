@@ -21,9 +21,7 @@ export abstract class PaginationBaseStrategy {
     }
 
     changePagination(startIndex: number, endIndex: number, changePageBy: number){
-      this.paginationService.beersIndexStart += startIndex;
-      this.paginationService.beersIndexEnd += endIndex;
-      this.paginationService.currentPage += changePageBy;
+      this.paginationService.changePagination(startIndex, endIndex, changePageBy)
     }
 
     public setPaginationText(paginationTextType: PaginationTextEnum){

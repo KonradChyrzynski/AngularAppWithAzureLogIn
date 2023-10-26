@@ -11,12 +11,18 @@ export class PaginationService {
 
     public numberOfPages!: number;
     public currentPage: number = 1;
-
+    public lastItemOnThePage!: number
     constructor() {
     }
 
     calculateNumberOfPages(stock: number): void{
       this.numberOfPages = Math.ceil(stock / this.numberOfItemsInPage);
+    }
+
+    public changePagination(startIndex: number, endIndex: number, changePageBy: number){
+      this.beersIndexStart += startIndex;
+      this.beersIndexEnd += endIndex;
+      this.currentPage += changePageBy;
     }
 
     resetPagination(){

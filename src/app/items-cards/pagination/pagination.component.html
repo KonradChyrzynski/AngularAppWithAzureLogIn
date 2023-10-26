@@ -1,6 +1,6 @@
 <section aria-label="Page navigation example">
   <ul class="pagination">
-    <ng-container *ngFor="let strategy of paginationStrategies" >
+    <ng-container *ngFor="let strategy of paginationStrategies$ | async">
         <app-pagination-button (changePaginationEvent)="changePage()" [paginationStrategy]="strategy"></app-pagination-button>
     </ng-container>
   </ul>

@@ -1,5 +1,5 @@
 <main class="wrapper">
-  <section id="app-item-{{item.id}}" *ngFor="let item of items; let i = index">
+  <section id="app-item-{{item.id}}" *ngFor="let item of items$ | async; let i = index">
     <div class="card-container" *ngIf="i < 6">
         <app-item-card id="app-item-{{item.id}}" [item]="item"></app-item-card>
     </div>

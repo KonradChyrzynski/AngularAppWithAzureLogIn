@@ -8,12 +8,13 @@ import { PaginationService } from "./pagination.service";
 })
 export class FavouriteItemsService 
 {
-    items: Set<IBeer> = new Set(
+    public items: Set<IBeer> = new Set(
     );
 
     private showPaginationSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    public items$: BehaviorSubject<IBeer[]> = new BehaviorSubject<IBeer[]>(Array.from(this.items))
 
-    constructor(private paginationService: PaginationService){
+    constructor(public paginationService: PaginationService){
         
     }
 
@@ -26,6 +27,9 @@ export class FavouriteItemsService
         for(let item of this.items){
             if(item.id === id){
                 this.items.delete(item);
+                if(this.paginationService.currentPage === 1){
+                    this.items$.next(Array.from(this.items))
+                }
                 break;
             }
         }

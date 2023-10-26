@@ -16,8 +16,8 @@ export class ItemsCardsComponent implements OnInit {
   ItemsStrategy!: IItemsStrategy;
 
   showPagination$!: Observable<boolean>; 
-  showPagination!: boolean;
   items: IBeer[] = [];
+  items$!: Observable<IBeer[]> 
   stock: number = 0;
   
   constructor(private paginationFactoryService: PaginationFactoryService, private paginationService: PaginationService) {
@@ -26,6 +26,7 @@ export class ItemsCardsComponent implements OnInit {
   async ngOnInit() {
       this.paginationService.resetPagination()   
       this.items = await this.ItemsStrategy.getItems();
+      this.items$ = this.ItemsStrategy.getItems$();
       this.showPagination$ = this.ItemsStrategy.showPaginationObservable();
       this.stock = await this.ItemsStrategy.getTotalItems();
       }

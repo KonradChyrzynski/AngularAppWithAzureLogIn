@@ -3,6 +3,7 @@ import { IPaginationWrapper } from 'src/app/interfaces/IPaginationWrapper';
 import { PaginationService } from 'src/app/services/pagination.service';
 import { IPaginationStrategy } from '../design-patterns/strategies/pagination/interfaces/IPaginationStrategy';
 import { PaginationFactoryService } from 'src/app/services/pagination.factory.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pagination',
@@ -17,7 +18,9 @@ export class PaginationComponent implements OnInit {
   @Output() changePaginationEvent = new EventEmitter();
 
   public paginationWrapper!: IPaginationWrapper
+  public paginationWrapper$!: Observable<IPaginationWrapper>
   public paginationStrategies!: IPaginationStrategy[]
+  public paginationStrategies$!: Observable<IPaginationStrategy[]>
 
   constructor(private paginationService: PaginationService, private paginationFactoryService: PaginationFactoryService){
 
@@ -27,7 +30,9 @@ export class PaginationComponent implements OnInit {
     this.paginationService.calculateNumberOfPages(this.stock);
     this.paginationFactoryService.setPaginationWrapper()
     this.paginationWrapper = this.paginationFactoryService.getPaginationWrapper();
+    this.paginationWrapper$ = this.paginationFactoryService.getPaginationWrapper$();
     this.paginationStrategies = Object.values(this.paginationWrapper).filter(value => value !== null);
+    this.paginationStrategies$ = this.paginationFactoryService.getPaginationStrategies$()
   }
 
   async changePage(){
