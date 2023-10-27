@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   - Optionally, you may replace any of the other parameters, or you can remove them and use the default values.
 
 ### Running the sample
-- In a command prompt, run `npm start`.
+- In a command prompt, run `npm install and npm start`.
 - Navigate to [http://localhost:4200](http://localhost:4200)
 - In the web page, click on the "Login" button. The app will automatically reload if you change any of the source files.
 
