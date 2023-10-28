@@ -34,7 +34,7 @@ export class FavouriteItemsService
             }
         }
 
-        if(this.items.size === 0){
+        if(this.items.size <= this.paginationService.numberOfItemsInPage || this.items.size === 0){
             this.showPaginationSubject.next(false); 
         }
         else{

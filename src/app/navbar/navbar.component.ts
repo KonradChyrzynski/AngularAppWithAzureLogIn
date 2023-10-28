@@ -81,5 +81,4 @@ export class NavbarComponent implements OnInit {
     this._destroying$.next(undefined);
     this._destroying$.complete();
   }
-
 }

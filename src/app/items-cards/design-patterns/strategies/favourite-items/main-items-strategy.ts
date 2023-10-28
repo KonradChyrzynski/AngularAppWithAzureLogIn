@@ -26,7 +26,7 @@ export class MainItemsStrategy  implements IItemsStrategy {
         // Simulate synchronous behavior by blocking until the promise is resolved
         await this._beer.getItems()
           .then((itemsResponse: IBeer[]) => {
-            this.showPaginationFlag = itemsResponse.length > 6;
+            this.showPaginationFlag = itemsResponse.length >= 1;
             this.totalItems = itemsResponse.length;
             this.items = itemsResponse.slice(
               this.paginationService.beersIndexStart, 
@@ -41,7 +41,7 @@ export class MainItemsStrategy  implements IItemsStrategy {
         this._beer.items$.next(Array.from(this.items))
 
         return this.items;
-      }
+    }
 
     showPaginationObservable(): Observable<boolean>{
         return new Observable<boolean>((observer) => {

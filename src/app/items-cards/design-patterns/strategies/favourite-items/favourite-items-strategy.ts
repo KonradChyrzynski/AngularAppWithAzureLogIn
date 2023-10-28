@@ -23,10 +23,8 @@ export class FavouriteItemsStrategy  implements IItemsStrategy  {
          await this.favItemsService.getFavouriteItems()
          .then((itemsResponse: IBeer[]) =>
          {
-
             const itemsLengt: number = itemsResponse.length
-            this.showPaginationFlag = itemsLengt > 6;
-
+            this.showPaginationFlag = itemsLengt >= 1;
             this.totalItems = itemsLengt;
             this.items = itemsResponse.slice(
                 this.paginationService.beersIndexStart,
@@ -38,9 +36,6 @@ export class FavouriteItemsStrategy  implements IItemsStrategy  {
                     throw error;
                 }));;
          this.favItemsService.items$.next(Array.from(this.items))
-         debugger;
-         if(this.paginationService.currentPage !== 1){
-         }
          return this.items;
     }
 
