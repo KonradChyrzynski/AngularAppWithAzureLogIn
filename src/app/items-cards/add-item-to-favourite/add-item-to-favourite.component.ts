@@ -22,7 +22,6 @@ export class AddItemToFavouriteComponent {
 
   handleStarClick(): void {
     this.item.favourite = !this.item.favourite;
-
     if(this.item.favourite)
     {
       this.favouriteItemsService.addToFavourite(this.item)

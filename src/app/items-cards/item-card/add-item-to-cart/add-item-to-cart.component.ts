@@ -17,8 +17,9 @@ export class AddItemToCartComponent {
    }
 
   async addItemToCart(): Promise<void> {
+    alert("Item added");
     this.item.in_cart = true;
-    this.item.in_cart_amount = 1;
+    this.item.in_cart_amount = this.item.in_cart_amount! >= 1 ? this.item.in_cart_amount! += 1 : 1;
     await this.cartService.addItem(this.item)
   }
 }
