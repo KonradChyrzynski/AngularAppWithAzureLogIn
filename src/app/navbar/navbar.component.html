@@ -13,23 +13,17 @@
     <div class="navbar-container-desktop" fxShow="true" fxHide.lt-md="true">
       <a mat-button routerLinkActive="active" routerLink="favourite-items">Favourite Items</a>
       <a mat-button routerLinkActive="active" routerLink="shopping-cart">Shopping Cart</a>
-      <a mat-button class="navbar-container-desktop-right" mat-button [routerLink]="['profile']">Profile</a>
-      <button mat-raised-button *ngIf="!loginDisplay" (click)="login()">Login</button>
-      <button mat-raised-button *ngIf="loginDisplay" (click)="logout()">Logout</button>
+      <button mat-raised-button class="navbar-container-desktop-right" *ngIf="!loginDisplay"
+        (click)="login()">Login</button>
+      <button mat-raised-button class="navbar-container-desktop-right" *ngIf="loginDisplay"
+        (click)="logout()">Logout</button>
     </div>
   </mat-toolbar>
   <mat-sidenav-container fxFlexFill class="example-container" *ngIf="sideBarOpen">
 
-    <mat-sidenav
-      color="primary"
-      #sidenav
-      fxLayout="column"
-      mode="over"
-      opened="false"
-      fxHide.gt-sm="true"
-      >
+    <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true">
 
-      <div fxLayout="column" >
+      <div fxLayout="column">
         <a mat-button routerLinkActive="active" routerLink="favourite-items">Favourite Items</a>
         <a mat-button routerLinkActive="active" routerLink="shopping-cart">Shopping Cart</a>
         <a mat-button routerLinkActive="active" [routerLink]="['profile']">Profile</a>
